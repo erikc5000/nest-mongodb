@@ -58,9 +58,9 @@ export class CatsRepository {
 }
 ```
 
-### Asynchrous configuration
+### Asynchronous configuration
 
-If you want to pass in Mongo configuration options from a ConfigService or other provider, you'll need to perform the Mongo module configuration asynchronously, using `MongoModule.forRootAsync()`.  The are several different ways of doing this.
+If you want to pass in Mongo configuration options from a ConfigService or other provider, you'll need to perform the Mongo module configuration asynchronously, using `MongoModule.forRootAsync()`.  There are several different ways of doing this.
 
 #### Use a factory function
 
@@ -121,7 +121,8 @@ If you wish to instead import your MongoConfigService class from a different mod
 
 ```typescript
 import { Module } from '@nestjs/common'
-import { MongoModule, MongoOptionsFactory, MongoModuleOptions } from 'nest-mongodb'
+import { MongoModule } from 'nest-mongodb'
+import { ConfigModule, ConfigService } from '../config/config.service'
 
 @Module({
     imports: [MongoModule.forRootAsync({
