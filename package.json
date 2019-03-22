@@ -1,6 +1,6 @@
 {
     "name": "nest-mongodb",
-    "version": "1.0.0",
+    "version": "6.0.0",
     "description": "A NestJS module for the MongoDB driver",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -8,7 +8,7 @@
         "build": "npm run build:clean && npm run build:tsc",
         "build:clean": "rimraf dist",
         "build:tsc": "tsc",
-        "format:check": "prettier --list-different \"src/**/*.ts\"",
+        "format:check": "prettier --check \"src/**/*.ts\"",
         "format:write": "prettier --write \"src/**/*.ts\""
     },
     "keywords": [
@@ -20,21 +20,21 @@
     "author": "Erik Christensen",
     "license": "ISC",
     "devDependencies": {
-        "@nestjs/common": "^5.5.0",
-        "@nestjs/core": "^5.5.0",
-        "@types/mongodb": "^3.1.18",
-        "@types/node": "^10.12.18",
+        "@nestjs/common": "^6.0.2",
+        "@nestjs/core": "^6.0.2",
+        "@types/mongodb": "^3.1.22",
+        "@types/node": "^10.14.2",
         "@types/rimraf": "^2.0.2",
-        "mongodb": "^3.1.10",
-        "prettier": "^1.15.3",
-        "reflect-metadata": "^0.1.12",
+        "mongodb": "^3.2.1",
+        "prettier": "^1.16.4",
+        "reflect-metadata": "^0.1.13",
         "rimraf": "^2.6.3",
-        "rxjs": "^6.3.3",
-        "typescript": "^3.2.2"
+        "rxjs": "^6.4.0",
+        "typescript": "^3.3.4000"
     },
     "peerDependencies": {
-        "@nestjs/common": "^5.1.0",
-        "@nestjs/core": "^5.1.0",
+        "@nestjs/common": "^6.0.0",
+        "@nestjs/core": "^6.0.0",
         "mongodb": "^3.1.0",
         "reflect-metadata": "^0.1.12",
         "rxjs": "^6.0.0"
