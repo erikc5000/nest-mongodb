@@ -1,4 +1,4 @@
-import { Module, Inject, Global, DynamicModule, Provider } from '@nestjs/common'
+import { Module, Inject, Global, DynamicModule, Provider, Type } from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
 import { MongoClient, MongoClientOptions } from 'mongodb'
 import {
@@ -118,13 +118,22 @@ export class MongoCoreModule {
                 useFactory: options.useFactory,
                 inject: options.inject || []
             }
-        } else {
+        } else if (options.useExisting) {
             return {
                 provide: MONGO_MODULE_OPTIONS,
                 useFactory: async (optionsFactory: MongoOptionsFactory) =>
                     await optionsFactory.createMongoOptions(),
-                inject: [options.useExisting || options.useClass]
+                inject: [options.useExisting]
             }
+        } else if (options.useClass) {
+            return {
+                provide: MONGO_MODULE_OPTIONS,
+                useFactory: async (optionsFactory: MongoOptionsFactory) =>
+                    await optionsFactory.createMongoOptions(),
+                inject: [options.useClass]
+            }
+        } else {
+            throw new Error('Invalid MongoModule options')
         }
     }
 }
