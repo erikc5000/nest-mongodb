@@ -5,3 +5,5 @@ export const MONGO_MODULE_OPTIONS = 'MongoModuleOptions'
 
 export const DEFAULT_MONGO_CONNECTION_NAME = 'DefaultMongo'
 export const DEFAULT_MONGO_CLIENT_OPTIONS: MongoClientOptions = { useNewUrlParser: true }
+
+export const DEFAULT_MONGO_COLLECTION_NAME = 'DefaultCollection'

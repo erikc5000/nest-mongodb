@@ -1,4 +1,5 @@
 import { Module, DynamicModule } from '@nestjs/common'
+import { createMongoProviders } from './mongo.providers'
 import { MongoCoreModule } from './mongo-core.module'
 import { MongoClientOptions } from 'mongodb'
 import { MongoModuleAsyncOptions } from './interfaces/mongo-options.interface'
@@ -37,6 +38,21 @@ export class MongoModule {
         return {
             module: MongoModule,
             imports: [MongoCoreModule.forRootAsync(options)]
+        }
+    }
+
+    /**
+     * Inject collections.
+     * @param collections An array of the names of the collections to be injected.
+     * @param connectionName A unique name for the connection. If not specified, a default name
+     * will be used.
+     */
+    static forFeature(collections: string[] = [], connectionName?: string): DynamicModule {
+        const providers = createMongoProviders(connectionName, collections)
+        return {
+            module: MongoModule,
+            providers: providers,
+            exports: providers
         }
     }
 }
