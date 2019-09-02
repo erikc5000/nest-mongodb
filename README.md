@@ -82,7 +82,7 @@ import { Cat } from './interfaces/cat'
 
 @Injectable()
 export class CatsRepository {
-    constructor(@InjectCollection() private readonly catsCollection: mongo.Collection) {}
+    constructor(@InjectCollection('cats') private readonly catsCollection: mongo.Collection) {}
 
     async create(cat: Cat) {
         const result = await this.catsCollection.insertOne(cat)
