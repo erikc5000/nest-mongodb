@@ -1,4 +1,4 @@
-import { DEFAULT_MONGO_COLLECTION_NAME, DEFAULT_MONGO_CONNECTION_NAME } from './mongo.constants'
+import { DEFAULT_MONGO_CONNECTION_NAME } from './mongo.constants'
 
 /**
  * Get a token for the MongoClient object for the given connection name
@@ -20,6 +20,6 @@ export function getDbToken(connectionName: string = DEFAULT_MONGO_CONNECTION_NAM
  * Get a token for the Mongo Db object for the given connection name
  * @param collectionName The unique name for the collection
  */
-export function getCollectionToken(collectionName: string = DEFAULT_MONGO_COLLECTION_NAME) {
+export function getCollectionToken(collectionName: string) {
     return `${collectionName}Collection`
 }

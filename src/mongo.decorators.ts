@@ -17,5 +17,5 @@ export const InjectDb = (connectionName?: string) => Inject(getDbToken(connectio
  * Inject the Mongo Collection object associated with a Db
  * @param collectionName The unique name associated with the collection
  */
-export const InjectCollection = (collectionName?: string) =>
+export const InjectCollection = (collectionName: string) =>
     Inject(getCollectionToken(collectionName))
