@@ -58,6 +58,44 @@ export class CatsRepository {
 }
 ```
 
+To inject a collection object:
+
+```typescript
+import { Module } from '@nestjs/common'
+import { MongoModule } from 'nest-mongodb'
+import { CatsController } from './cats.controller'
+import { CatsService } from './cats.service'
+
+@Module({
+  imports: [MongoModule.forFeature(['cats'])],
+  controllers: [CatsController],
+  providers: [CatsService],
+})
+export class CatsModule {}
+```
+
+```typescript
+import * as mongo from 'mongodb'
+import { Injectable } from '@nestjs/common'
+import { InjectCollection } from 'nest-mongodb'
+import { Cat } from './interfaces/cat'
+
+@Injectable()
+export class CatsRepository {
+    constructor(@InjectCollection('cats') private readonly catsCollection: mongo.Collection) {}
+
+    async create(cat: Cat) {
+        const result = await this.catsCollection.insertOne(cat)
+
+        if (result.insertedCount !== 1 || result.ops.length < 1) {
+            throw new Error('Insert failed!')
+        }
+
+        return result.ops[0]
+    }
+}
+```
+
 ### Asynchronous configuration
 
 If you want to pass in Mongo configuration options from a ConfigService or other provider, you'll need to perform the Mongo module configuration asynchronously, using `MongoModule.forRootAsync()`.  There are several different ways of doing this.
