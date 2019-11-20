@@ -55,7 +55,7 @@ export class MongoCoreModule {
     }
 
     static forRootAsync(options: MongoModuleAsyncOptions): DynamicModule {
-        const mongoConnectionName = options.connectionName || DEFAULT_MONGO_CONNECTION_NAME
+        const mongoConnectionName = options.connectionName ?? DEFAULT_MONGO_CONNECTION_NAME
 
         const connectionNameProvider = {
             provide: MONGO_CONNECTION_NAME,
@@ -66,7 +66,7 @@ export class MongoCoreModule {
             provide: getClientToken(mongoConnectionName),
             useFactory: async (mongoModuleOptions: MongoModuleOptions) => {
                 const { uri, clientOptions } = mongoModuleOptions
-                const client = new MongoClient(uri, clientOptions || DEFAULT_MONGO_CLIENT_OPTIONS)
+                const client = new MongoClient(uri, clientOptions ?? DEFAULT_MONGO_CLIENT_OPTIONS)
                 return await client.connect()
             },
             inject: [MONGO_MODULE_OPTIONS]
@@ -116,7 +116,7 @@ export class MongoCoreModule {
             return {
                 provide: MONGO_MODULE_OPTIONS,
                 useFactory: options.useFactory,
-                inject: options.inject || []
+                inject: options.inject ?? []
             }
         } else if (options.useExisting) {
             return {
