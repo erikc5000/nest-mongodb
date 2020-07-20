@@ -20,17 +20,17 @@
     "author": "Erik Christensen",
     "license": "ISC",
     "devDependencies": {
-        "@nestjs/common": "^7.2.0",
-        "@nestjs/core": "^7.2.0",
+        "@nestjs/common": "^7.3.2",
+        "@nestjs/core": "^7.3.2",
         "@types/mongodb": "^3.5.25",
-        "@types/node": "^10.17.26",
+        "@types/node": "^10.17.27",
         "@types/rimraf": "^3.0.0",
         "mongodb": "^3.5.9",
         "prettier": "^2.0.5",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
-        "rxjs": "^6.5.5",
-        "typescript": "^3.9.5"
+        "rxjs": "^6.6.0",
+        "typescript": "^3.9.7"
     },
     "peerDependencies": {
         "@nestjs/common": "^6.0.0 || ^7.0.0",
