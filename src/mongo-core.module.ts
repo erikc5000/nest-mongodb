@@ -4,7 +4,6 @@ import { MongoClient, MongoClientOptions } from 'mongodb'
 import {
     MONGO_CONNECTION_NAME,
     DEFAULT_MONGO_CONNECTION_NAME,
-    DEFAULT_MONGO_CLIENT_OPTIONS,
     MONGO_MODULE_OPTIONS
 } from './mongo.constants'
 import {
@@ -25,12 +24,12 @@ export class MongoCoreModule {
     static forRoot(
         uri: string,
         dbName: string,
-        clientOptions: MongoClientOptions = DEFAULT_MONGO_CLIENT_OPTIONS,
-        connectionName: string = DEFAULT_MONGO_CONNECTION_NAME
+        clientOptions?: any,
+        connectionName?: string
     ): DynamicModule {
         const connectionNameProvider = {
             provide: MONGO_CONNECTION_NAME,
-            useValue: connectionName
+            useValue: connectionName ?? DEFAULT_MONGO_CONNECTION_NAME
         }
 
         const clientProvider = {
@@ -66,7 +65,7 @@ export class MongoCoreModule {
             provide: getClientToken(mongoConnectionName),
             useFactory: async (mongoModuleOptions: MongoModuleOptions) => {
                 const { uri, clientOptions } = mongoModuleOptions
-                const client = new MongoClient(uri, clientOptions ?? DEFAULT_MONGO_CLIENT_OPTIONS)
+                const client = new MongoClient(uri, clientOptions)
                 return await client.connect()
             },
             inject: [MONGO_MODULE_OPTIONS]
@@ -92,7 +91,7 @@ export class MongoCoreModule {
     async onModuleDestroy() {
         const client: MongoClient = this.moduleRef.get<any>(getClientToken(this.connectionName))
 
-        if (client && client.isConnected()) await client.close()
+        if (client) await client.close()
     }
 
     private static createAsyncProviders(options: MongoModuleAsyncOptions): Provider[] {

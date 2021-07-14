@@ -1,7 +1,6 @@
 import { Module, DynamicModule } from '@nestjs/common'
 import { createMongoProviders } from './mongo.providers'
 import { MongoCoreModule } from './mongo-core.module'
-import { MongoClientOptions } from 'mongodb'
 import { MongoModuleAsyncOptions } from './interfaces/mongo-options.interface'
 
 /**
@@ -20,7 +19,7 @@ export class MongoModule {
     static forRoot(
         uri: string,
         dbName: string,
-        options?: MongoClientOptions,
+        options?: any,
         connectionName?: string
     ): DynamicModule {
         return {

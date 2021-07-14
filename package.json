@@ -22,10 +22,9 @@
     "devDependencies": {
         "@nestjs/common": "^8.0.0",
         "@nestjs/core": "^8.0.0",
-        "@types/mongodb": "^3.6.12",
         "@types/node": "^10.17.56",
         "@types/rimraf": "^3.0.0",
-        "mongodb": "^3.6.6",
+        "mongodb": "^4.0.0",
         "prettier": "^2.2.1",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
@@ -35,7 +34,7 @@
     "peerDependencies": {
         "@nestjs/common": "^6.0.0 || ^7.0.0 || ^8.0.0",
         "@nestjs/core": "^6.0.0 || ^7.0.0 || ^8.0.0",
-        "mongodb": "^3.1.0",
+        "mongodb": "^3.1.0 || ^4.0.0",
         "reflect-metadata": "^0.1.12",
         "rxjs": "^6.0.0 || ^7.0.0"
     },
