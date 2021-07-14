@@ -1,6 +1,6 @@
 {
     "name": "nest-mongodb",
-    "version": "6.2.0",
+    "version": "6.3.0",
     "description": "A NestJS module for the MongoDB driver",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
