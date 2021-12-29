@@ -1,4 +1,12 @@
-import { Module, Inject, Global, DynamicModule, Provider, Type } from '@nestjs/common'
+import {
+    Module,
+    Inject,
+    Global,
+    DynamicModule,
+    Provider,
+    Type,
+    OnApplicationShutdown
+} from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
 import { MongoClient, MongoClientOptions } from 'mongodb'
 import {
@@ -15,7 +23,7 @@ import { getClientToken, getDbToken } from './mongo.util'
 
 @Global()
 @Module({})
-export class MongoCoreModule {
+export class MongoCoreModule implements OnApplicationShutdown {
     constructor(
         @Inject(MONGO_CONNECTION_NAME) private readonly connectionName: string,
         private readonly moduleRef: ModuleRef
@@ -88,7 +96,7 @@ export class MongoCoreModule {
         }
     }
 
-    async onModuleDestroy() {
+    async onApplicationShutdown() {
         const client: MongoClient = this.moduleRef.get<any>(getClientToken(this.connectionName))
 
         if (client) await client.close()
