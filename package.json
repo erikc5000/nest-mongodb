@@ -21,7 +21,7 @@
     "license": "ISC",
     "devDependencies": {
         "@nestjs/common": "^10.2.8",
-        "@nestjs/core": "^10.2.8",
+        "@nestjs/core": "^11.1.18",
         "@types/node": "^18.0.0",
         "@types/rimraf": "^3.0.0",
         "mongodb": "^6.2.0",
